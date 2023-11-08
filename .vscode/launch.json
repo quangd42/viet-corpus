@@ -1,0 +1,15 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python: CLI",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "args": ["data/input/test-sm-1.txt", "3"],
+            "console": "integratedTerminal",
+
+        }
+    ]
+}
