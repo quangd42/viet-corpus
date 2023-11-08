@@ -1,0 +1,9 @@
+{
+    "letters": {"a":1, "b":2, "f": 5, "d": 10},
+    "bigrams": {"ab":1},
+    "trigrams": {"the":1},
+    "toptrigrams": [{"Ngram":"you", "Count":5}, {"Ngram": "the", "Count": 1}, {"Ngram": "right", "Count": 10}],
+    "skipgrams": {"dz":209.2},
+    "TotalBigrams": 10,
+    "Total": 15
+}
