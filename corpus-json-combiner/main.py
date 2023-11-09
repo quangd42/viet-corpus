@@ -1,78 +1,112 @@
 """Combine all genkey corpus stats file into one."""
 
 import sys, json
+from pathlib import Path
 
 
 def main():
-    if len(sys.argv) != 4:
-        sys.exit('Usage: python main.py input1.json input2.json output.json')
+    if len(sys.argv) != 2:
+        sys.exit('Usage: python main.py <input_path>')
     else:
-        with open(sys.argv[1]) as f:
-            corpus1 = json.load(f)
-        with open(sys.argv[2]) as f:
-            corpus2 = json.load(f)
+        # Get input_path and create json file list
+        input_path = Path(sys.argv[1])
+        file_list = list(input_path.glob("*.json"))
+
+        # Loop through json file list
+        for input_file in file_list:
+            # Load json file to dict
+            try:
+                with open(input_file) as f:
+                    corpus_dict = json.load(f)
+            except FileNotFoundError:
+                sys.exit("Input file does not exist")
+            
+            # Create combined_dict
+            if not combined_dict:
+                combined_dict = corpus_dict
+
+            else:
+                combined_dict = combine_json(combined_dict, corpus_dict)
+
         
-        # init empty dict
-        combined_dict = {}
+        # Write file to output
+        output_path = sys.argv[1] + 'output/'
+        # Make sure output directory is there
+        Path(output_path).mkdir(parents=True, exist_ok=True)
         
-        # letters, bigrams, trigrams, skipgrams
-        for key in ['letters', 'bigrams', 'trigrams', 'skipgrams']:
-            key_combined_content = corpus1[key]
-            key_2 = corpus2[key]
-            for sub_key in key_combined_content:
-                try:
-                    key_combined_content[sub_key] += key_2[sub_key]
-                except KeyError:
-                    pass
-            for sub_key in key_2:
-                if sub_key not in key_combined_content:
-                    key_combined_content[sub_key] = key_2[sub_key]
-            combined_dict[key] = key_combined_content
+        with open(output_path + "combined.json" , 'w') as f:
+            f.write(json.dumps(combined_dict))
 
 
-        # toptrigrams
-        corpus1_toptri_list = corpus1['toptrigrams']
-        corpus2_toptri_list = corpus2['toptrigrams']
-        temp_toptri_list = []
-        for toptri_item_2 in corpus2_toptri_list:
-            # For each item in list2
-            match = False
-            # Loop through list1
-            for toptri_item_1 in corpus1_toptri_list:
-                # When an item in list1 matches item in list2:
-                if toptri_item_1['Ngram'] == toptri_item_2['Ngram']:
-                    # Sum the count
-                    combined_count = toptri_item_1['Count'] + toptri_item_2['Count']
-                    temp_toptri_list.append({'Ngram': toptri_item_1['Ngram'], 'Count': combined_count})
-                    # Remove the item from list1 for when getting to next item from list2
-                    corpus1_toptri_list.remove(toptri_item_1)
-                    match = True
-                    # Then move on to next item from list2
-                    break
-            # If there is no match in list1 at all, that list2 item can be appended as is
-            if not match:
-                temp_toptri_list.append(toptri_item_2)
-        # After looping through all items in list2, whatever left in list1 has no match and can be appended as is
+def combine_json(corpus_dict1: dict, corpus_dict2: dict) -> dict:
+    
+    corpus1 = corpus_dict1
+    corpus2 = corpus_dict2
+
+    # init empty dict
+    combined_dict = {}
+    
+    # letters, bigrams, trigrams, skipgrams
+    for key in ['letters', 'bigrams', 'trigrams', 'skipgrams']:
+        key_combined_content = corpus1[key]
+        key_2 = corpus2[key]
+        for sub_key in key_combined_content:
+            try:
+                key_combined_content[sub_key] += key_2[sub_key]
+            except KeyError:
+                pass
+        for sub_key in key_2:
+            if sub_key not in key_combined_content:
+                key_combined_content[sub_key] = key_2[sub_key]
+        combined_dict[key] = key_combined_content
+
+
+    # toptrigrams
+    corpus1_toptri_list = corpus1['toptrigrams']
+    corpus2_toptri_list = corpus2['toptrigrams']
+    temp_toptri_list = []
+    for toptri_item_2 in corpus2_toptri_list:
+        # For each item in list2
+        match = False
+        # Loop through list1
         for toptri_item_1 in corpus1_toptri_list:
-            temp_toptri_list.append(toptri_item_1)
-        
-        # sort the list based on key 'Count'
-        corpus_combined_toptri_list = sorted(temp_toptri_list, key=lambda x: x['Count'], reverse=True)
-        combined_dict['toptrigrams'] = corpus_combined_toptri_list
+            # When an item in list1 matches item in list2:
+            if toptri_item_1['Ngram'] == toptri_item_2['Ngram']:
+                # Sum the count
+                combined_count = toptri_item_1['Count'] + toptri_item_2['Count']
+                temp_toptri_list.append({'Ngram': toptri_item_1['Ngram'], 'Count': combined_count})
+                # Remove the item from list1 for when getting to next item from list2
+                corpus1_toptri_list.remove(toptri_item_1)
+                match = True
+                # Then move on to next item from list2
+                break
+        # If there is no match in list1 at all, that list2 item can be appended as is
+        if not match:
+            temp_toptri_list.append(toptri_item_2)
+    # After looping through all items in list2, whatever left in list1 has no match and can be appended as is
+    for toptri_item_1 in corpus1_toptri_list:
+        temp_toptri_list.append(toptri_item_1)
+    
+    # sort the list based on key 'Count'
+    corpus_combined_toptri_list = sorted(temp_toptri_list, key=lambda x: x['Count'], reverse=True)
+    combined_dict['toptrigrams'] = corpus_combined_toptri_list
 
 
-        # TotalBigrams and Total
-        for key in ['TotalBigrams', 'Total']:
-            key_combined_content = corpus1[key] + corpus2[key]
-            combined_dict[key] = key_combined_content
+    # TotalBigrams and Total
+    for key in ['TotalBigrams', 'Total']:
+        key_combined_content = corpus1[key] + corpus2[key]
+        combined_dict[key] = key_combined_content
 
 
-        # Combine and write
-        order = ['letters', 'bigrams', 'trigrams', 'toptrigrams', 'skipgrams', 'TotalBigrams', 'Total']
-        ordered_dict = {key: combined_dict[key] for key in order}
-        # print(ordered_dict)
-        with open(sys.argv[3], 'w') as f:
-            f.write(json.dumps(ordered_dict))
+    # Combine and write
+    order = ['letters', 'bigrams', 'trigrams', 'toptrigrams', 'skipgrams', 'TotalBigrams', 'Total']
+    ordered_dict = {key: combined_dict[key] for key in order}
+    # print(ordered_dict)
+
+
+
+    # If all is well return combined json as dict
+    return ordered_dict
 
 
 if __name__ == "__main__":
