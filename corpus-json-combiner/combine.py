@@ -12,6 +12,7 @@ def main():
         input_path = Path(sys.argv[1])
         file_list = list(input_path.glob("*.json"))
 
+        combined_dict = {}
         # Loop through json file list
         for input_file in file_list:
             # Load json file to dict
@@ -30,7 +31,7 @@ def main():
 
         
         # Write file to output
-        output_path = sys.argv[1] + 'output/'
+        output_path = sys.argv[1] + '/output/'
         # Make sure output directory is there
         Path(output_path).mkdir(parents=True, exist_ok=True)
         
