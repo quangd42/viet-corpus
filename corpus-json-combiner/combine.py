@@ -5,46 +5,58 @@ from pathlib import Path
 
 
 def main():
-    if len(sys.argv) != 2:
-        sys.exit('Usage: python main.py <input_path>')
+    if len(sys.argv) != 3:
+        sys.exit('Usage: python combine.py <input_dir> <output_dir>')
     else:
         # Get input_path and create json file list
-        input_path = Path(sys.argv[1])
-        file_list = list(input_path.glob("*.json"))
+        input_dir = Path(sys.argv[1])
+        file_list = list(input_dir.glob("*.json"))
 
-        combined_dict = {}
-        # Loop through json file list
-        for input_file in file_list:
-            # Load json file to dict
-            try:
-                with open(input_file) as f:
-                    corpus_dict = json.load(f)
-            except FileNotFoundError:
-                sys.exit("Input file does not exist")
-            
-            # Create combined_dict
-            if not combined_dict:
-                combined_dict = corpus_dict
+        output_dir = Path(sys.argv[2])
 
-            else:
-                combined_dict = combine_json(combined_dict, corpus_dict)
+        combined_dict = combine_all_json(file_list)
 
-        
-        # Write file to output
-        output_path = sys.argv[1] + '/output/'
-        # Make sure output directory is there
-        Path(output_path).mkdir(parents=True, exist_ok=True)
-        
-        with open(output_path + "combined.json" , 'w') as f:
-            f.write(json.dumps(combined_dict))
+        save_output_json(combined_dict, output_dir)
 
 
-def combine_json(corpus_dict1: dict, corpus_dict2: dict) -> dict:
+def save_output_json(combined_dict: dict, output_dir: str) -> None:
+    # Write file to output
+    file_name = 'combined.json'
+    output_path = output_dir / file_name
+    # Make sure output directory is there
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
     
+    with open(output_path, 'w') as f:
+        f.write(json.dumps(combined_dict))
+
+
+
+def combine_all_json(file_list: list) -> dict:
+    combined_dict = {}
+    # Loop through json file list
+    for input_file in file_list:
+        # Load json file to dict
+        try:
+            with open(input_file) as f:
+                corpus_dict = json.load(f)
+        except FileNotFoundError:
+            sys.exit("Input file does not exist")
+        
+        # Create combined_dict
+        if not combined_dict:
+            combined_dict = corpus_dict
+
+        else:
+            combined_dict = combine_two_json(combined_dict, corpus_dict)
+
+    return combined_dict
+
+
+def combine_two_json(corpus_dict1: dict, corpus_dict2: dict) -> dict:
+        
     corpus1 = corpus_dict1
     corpus2 = corpus_dict2
 
-    # init empty dict
     combined_dict = {}
     
     # letters, bigrams, trigrams, skipgrams
