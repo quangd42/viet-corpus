@@ -1,6 +1,5 @@
-import matplotlib.pyplot as plt
-
-import json, sys, os
+import json, sys
+from pathlib import Path
 
 
 EXPORT_KEY_LIST = ['letters', 'bigrams', 'trigrams', 'skipgrams']
@@ -9,20 +8,21 @@ EXPORT_KEY_LIST = ['letters', 'bigrams', 'trigrams', 'skipgrams']
 
 def main():
     # Load json file to dict
-    validate_input()
-    input_file = str(sys.argv[1])
+    input_file = validate_usage()
     corpus_dict = load_dict(input_file)
 
     for key in EXPORT_KEY_LIST:
         dict = extract_stats(corpus_dict, key)
         # print(dict)
-        output_file = create_output_filename(input_file, key)
-        write_output(output_file, dict)
+        output_dir = create_output_dir(input_file)
+        output_filename = create_output_filename(output_dir, key)
+        write_output(output_filename, dict)
 
 
-def validate_input():
+def validate_usage():
     if len(sys.argv) != 2:
-        sys.exit("Usage: python visualize.py <input_file>")
+        sys.exit("Usage: python extract.py <input_file>")
+    return str(sys.argv[1])
 
 
 def load_dict(input_file: str) -> dict:
@@ -53,14 +53,19 @@ def extract_stats(corpus_dict: dict, key: str) -> dict:
     return sorted_letters
 
 
-def create_output_filename(input_file: str, key: str) -> str:
-    file_name, _ = os.path.basename(input_file).split('.')
+def create_output_dir(input_file:str) -> str:
+    input_path = Path(input_file)
+    file_name, _ = input_path.name.split('.')
 
-    output_path = os.path.dirname(input_file) + '/' + file_name + '/'
-    output_file = output_path + key + '.json'
-    
-    os.makedirs(output_path, exist_ok=True)
-    return output_file
+    output_dir = input_path.parent / file_name
+    Path(output_dir).mkdir(parents=True, exist_ok=True)
+    return output_dir
+
+
+def create_output_filename(output_dir: str, key: str) -> str:
+    output_filename = f'{key}.json'
+    output_path = output_dir / output_filename
+    return output_path
 
 
 def write_output(outfile: str, stats_dict: dict) -> None:
