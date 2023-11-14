@@ -1,6 +1,7 @@
 import sys
 import datetime
 import json
+from pathlib import Path
 
 
 # Maximum number of output file
@@ -16,8 +17,8 @@ def main():
     if not validate_telex_mapping(telex_mapping):
         sys.exit('telex_mapping contains invalid info')
     
-    output_filenames = convert_multiple_lines_to_telex(input_file, telex_mapping, number_of_lines)
-    print(f"{len(output_filenames) - 1} files created successfully. Output written to {OUTPUT_PATH}.")
+    output_files = convert_multiple_lines_to_telex(input_file, telex_mapping, number_of_lines)
+    print(f"{len(output_files)} files created successfully. Output written to {OUTPUT_PATH}.")
 
 
 def validate_usage() -> tuple:
@@ -94,7 +95,7 @@ def convert_line_to_telex(line: str, telex_mapping: dict) -> str:
 def convert_multiple_lines_to_telex(input_file: str, telex_mapping: dict, number_of_lines: int) -> int:
     try:
         with open(input_file, encoding="utf-8") as f:
-            output_filenames = []
+            output_files = []
             telex_lines = []
             
             for line in f:
@@ -102,13 +103,13 @@ def convert_multiple_lines_to_telex(input_file: str, telex_mapping: dict, number
                 telex_lines.append(telex_line)
 
                 if len(telex_lines) == number_of_lines:
-                    output_filenames = save_telex_output(telex_lines, output_filenames)
+                    output_files = save_telex_output(telex_lines, output_files)
                     telex_lines = []
 
-                if len(output_filenames) == OUTPUT_COUNT_LIMIT:
+                if len(output_files) == OUTPUT_COUNT_LIMIT:
                     break
         
-        return output_filenames
+        return output_files
 
     except FileNotFoundError:
         sys.exit("Input file not found.")
@@ -116,15 +117,17 @@ def convert_multiple_lines_to_telex(input_file: str, telex_mapping: dict, number
         sys.exit("An error occurred:", str(e))
 
 
-def save_telex_output(telex_lines: list, output_filenames: list) -> list:
+def save_telex_output(telex_lines: list, output_files: list) -> list:
     today = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_count = len(output_filenames) + 1
-    output_file = OUTPUT_PATH + "telex_output" + "_" + today + "_" + str(output_count) + "." + "txt"
+    output_count = len(output_files) + 1
+
+    output_name = f"telex_output_{today}_{str(output_count)}.txt"
+    output_file = Path(OUTPUT_PATH) / output_name
     with open(output_file, 'w', encoding="utf-8") as f_out:
         f_out.write("\n".join(telex_lines))
     print(f"Created {output_file}.")
-    output_filenames.append(output_file)
-    return output_filenames
+    output_files.append(output_file)
+    return output_files
 
 
 if __name__ == "__main__":
