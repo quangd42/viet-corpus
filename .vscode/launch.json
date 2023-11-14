@@ -1,6 +1,7 @@
 {
     "version": "0.2.0",
     "configurations": [
+    
         {
             "name": "Python: Extracter",
             "type": "python",
@@ -17,7 +18,7 @@
             "console": "integratedTerminal",
         },
         {
-            "name": "Python: CLI",
+            "name": "Python: Telexify",
             "type": "python",
             "request": "launch",
             "program": "${file}",
