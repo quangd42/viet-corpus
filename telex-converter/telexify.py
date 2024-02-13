@@ -6,15 +6,16 @@ from pathlib import Path
 
 # Maximum number of output file
 OUTPUT_COUNT_LIMIT = 1
-OUTPUT_PATH = Path("data/output/batch2").resolve()
+OUTPUT_PATH = Path("./data/output/batch2").resolve()
+
+# Telex mapping path
+MAPPING_PATH = Path("./new_telex_mapping-w.json").resolve()
 
 
 def main():
     input_file, number_of_lines = validate_usage()
 
-    telex_mapping = load_telex_mapping(
-        "/Users/quang-dang/Documents/viet-corpus-converter/telex-converter/new_telex_mapping-w.json"
-    )
+    telex_mapping = load_telex_mapping(MAPPING_PATH)
     if not validate_telex_mapping(telex_mapping):
         sys.exit("telex_mapping contains invalid info")
 
@@ -35,7 +36,7 @@ def validate_usage() -> tuple:
         return input_file, number_of_lines
 
 
-def load_telex_mapping(input_file: str) -> dict:
+def load_telex_mapping(input_file: Path) -> dict:
     try:
         with open(input_file) as f:
             return json.load(f)
@@ -97,7 +98,7 @@ def convert_line_to_telex(line: str, telex_mapping: dict) -> str:
 
 def convert_multiple_lines_to_telex(
     input_file: str, telex_mapping: dict, number_of_lines: int
-) -> int:
+) -> list:
     try:
         with open(input_file, encoding="utf-8") as f:
             output_files = []
@@ -119,7 +120,7 @@ def convert_multiple_lines_to_telex(
     except FileNotFoundError:
         sys.exit("Input file not found.")
     except Exception as e:
-        sys.exit("An error occurred:", str(e))
+        sys.exit(f"An error occurred: {str(e)}")
 
 
 def save_telex_output(telex_lines: list, output_files: list) -> list:
