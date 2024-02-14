@@ -3,7 +3,7 @@
     "configurations": [
         {
             "name": "Python: Extracter",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "args": [
@@ -13,14 +13,14 @@
         },
         {
             "name": "Python: Current File",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
         },
         {
             "name": "Python: Telexify",
-            "type": "python",
+            "type": "debugpy",
             "request": "launch",
             "program": "${file}",
             "args": [
@@ -28,6 +28,15 @@
                 "3"
             ],
             "console": "integratedTerminal",
+        },
+        {
+            "name": "Run Click",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "args": ["-m", "src.converter.main", "load", "test1.txt"],
+            "console": "integratedTerminal"
+
         }
     ]
 }
