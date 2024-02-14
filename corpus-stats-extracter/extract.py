@@ -4,7 +4,7 @@ from pathlib import Path
 
 
 EXPORT_KEY_LIST = ["letters", "bigrams", "trigrams", "skipgrams"]
-# EXPORT_KEY_LIST = ['letters']
+EXPORT_KEY_LIST = ["letters"]
 
 
 def main():

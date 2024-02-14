@@ -1,9 +1,9 @@
 .DS_Store
 
-/*/.vscode
-/*/.venv
-/*/__pycache__
-/*/.pytest_cache
+/**/.vscode
+/**/.venv
+/**/__pycache__
+/**/.pytest_cache
 
 /telex-converter/data
 /corpus-json-combiner/data/

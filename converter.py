@@ -11,3 +11,11 @@
 # Run extracter to see relevant stats
 
 # Delete files created by other modules
+
+import click
+
+
+@click.command()
+def cli():
+    """Example script."""
+    click.echo("Hello World!")
