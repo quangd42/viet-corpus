@@ -1,11 +1,11 @@
 .DS_Store
 
-/**/.vscode
 /**/.venv
 /**/__pycache__
 /**/.pytest_cache
+/data
 
-/telex-converter/data
-/corpus-json-combiner/data/
-/corpus-json-combiner/test
+telex-converter/data
+corpus-json-combiner/data/
+corpus-json-combiner/test
 corpus-stats-extracter/data

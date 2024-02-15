@@ -1,0 +1,2 @@
+[console_scripts]
+converter = converter.main:cli
