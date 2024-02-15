@@ -4,33 +4,41 @@ import json
 from pathlib import Path
 
 
+LINE_COUNT_PER_FILE = 3000
 OUTPUT_PATH = Path("./data/output/batch2").resolve()
 MAPPING_PATH = Path("./new_telex_mapping-w.json").resolve()
 
 
 def main():
-    input_file, number_of_lines = validate_usage()
+    input_file, line_count_limit = validate_usage()
 
     telex_mapping = load_telex_mapping(MAPPING_PATH)
     if not validate_telex_mapping(telex_mapping):
         sys.exit("telex_mapping contains invalid info")
 
-    telex_text_list = convert_multiple_lines_to_telex(
-        input_file, telex_mapping, number_of_lines
+    output_path = OUTPUT_PATH
+    Path.mkdir(output_path, parents=True, exist_ok=True)
+
+    output_count = convert_and_save(
+        input_file, telex_mapping, line_count_limit, output_path
     )
-    output_file_count = save_telex_output(telex_text_list, OUTPUT_PATH)
-    print(
-        f"{output_file_count} files created successfully. Output written to {OUTPUT_PATH}."
-    )
+
+    print(f"{'-' * 5}")
+    if output_count == 0:
+        print("No file created. Something went wrong.")
+    else:
+        print(
+            f"{output_count} files created successfully. Output written to {output_path}"
+        )
 
 
 def validate_usage() -> tuple:
     if len(sys.argv) != 3:
-        sys.exit("Usage: python main.py <input_file> <number_of_lines>")
+        sys.exit("Usage: python main.py <input_file> <line_count_limit>")
     else:
         input_file = sys.argv[1]
-        number_of_lines = int(sys.argv[2])
-        return input_file, number_of_lines
+        line_count_limit = int(sys.argv[2])
+        return input_file, line_count_limit
 
 
 def load_telex_mapping(input_file: Path) -> dict:
@@ -93,53 +101,55 @@ def convert_line_to_telex(line: str, telex_mapping: dict) -> str:
     return " ".join(telex_line)
 
 
-def convert_multiple_lines_to_telex(
-    input_file: str, telex_mapping: dict, number_of_lines: int
-) -> list:
+def save_telex_file(telex_text: str, output_file: Path) -> bool:
     try:
-        telex_text_list = []
+        with open(output_file, "w", encoding="utf-8") as f_out:
+            # print("File opened.")
+            f_out.write(telex_text)
+            print(f"Created {output_file}.")
+    except BaseException as err:
+        print(f"Failed to save file. {err}")
+        return False
+    return True
+
+
+def convert_and_save(
+    input_file: str, telex_mapping: dict, line_count_limit: int, output_path: Path
+) -> int:
+    try:
+
+        output_count = 0
+        today = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
         with open(input_file, encoding="utf-8") as f:
             telex_lines = []
+            line_count = 0
 
             for line in f:
-                # telex_line = convert_line_to_telex(line, telex_mapping)
-                telex_lines.append(convert_line_to_telex(line, telex_mapping))
-
-                if len(telex_lines) == number_of_lines:
-                    # output_files = save_telex_output(telex_lines, output_files)
-                    # Instead of calling save_telex_output here, put it in memory
-                    # This way the program may use up a lot of memory
-                    # The function will return list of str instead
-                    # TODO: see if yield will help with this
+                line_count += 1
+                if line_count > line_count_limit:
                     break
 
-            telex_text_list.append("\n".join(telex_lines))
+                telex_lines.append(convert_line_to_telex(line, telex_mapping))
 
-        return telex_text_list
+                if len(telex_lines) == LINE_COUNT_PER_FILE:
+                    output_name = f"telex_output_{today}_{output_count}.txt"
+                    output_file = output_path / output_name
+                    if save_telex_file("\n".join(telex_lines), output_file):
+                        output_count += 1
+                    telex_lines.clear()
+
+            if len(telex_lines) > 0:
+                output_name = f"telex_output_{today}_{output_count}.txt"
+                output_file = output_path / output_name
+                if save_telex_file("\n".join(telex_lines), output_file):
+                    output_count += 1
+
+        return output_count
 
     except FileNotFoundError:
         sys.exit("Input file not found.")
     except Exception as e:
         sys.exit(f"An error occurred: {str(e)}")
-
-
-def save_telex_output(telex_text_list: list[str], output_path: Path) -> int:
-    output_count = 0
-
-    for telex_text in telex_text_list:
-        today = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
-        output_name = f"telex_output_{today}_{str(output_count)}.txt"
-        output_file = output_path / output_name
-
-        try:
-            with open(output_file, "w", encoding="utf-8") as f_out:
-                # print("File opened.")
-                f_out.write(telex_text)
-                print(f"Created {output_file}.")
-        except BaseException as err:
-            sys.exit(f"Failed to save file. {err}")
-        output_count += 1
-    return output_count
 
 
 if __name__ == "__main__":

@@ -34,7 +34,7 @@ def cli():
 @click.option(
     "--limit",
     "-l",
-    default=1000,
+    default=10000,
     help="Limit the number of lines processed, in case you have a very big input file",
 )
 @click.option(
@@ -53,11 +53,10 @@ def load(filename: str, limit: int, name: str):
     if not tc.validate_telex_mapping(telex_mapping):
         sys.exit("telex mapping contains invalid info")
 
-    telex_text_list = tc.convert_multiple_lines_to_telex(filename, telex_mapping, limit)
-
     output_path = DATA_PATH / name
     Path.mkdir(output_path, parents=True, exist_ok=True)
-    output_count = tc.save_telex_output(telex_text_list, output_path)
+
+    output_count = tc.convert_and_save(filename, telex_mapping, limit, output_path)
 
     print(f"{'-' * 5}")
     if output_count == 0:
