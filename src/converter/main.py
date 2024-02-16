@@ -53,7 +53,18 @@ def load(filename: str, limit: int, name: str):
     if not tc.validate_telex_mapping(telex_mapping):
         sys.exit("telex mapping contains invalid info")
 
+    # Check output path
     output_path = DATA_PATH / name
+    while output_path.exists():
+        is_confirmed = click.confirm(
+            f"{name} is already used. Are you sure you want to overwrite?"
+        )
+        if not is_confirmed:
+            name = click.prompt("Name")
+            output_path = DATA_PATH / name
+        else:
+            break
+
     Path.mkdir(output_path, parents=True, exist_ok=True)
 
     output_count = tc.convert_and_save(filename, telex_mapping, limit, output_path)
