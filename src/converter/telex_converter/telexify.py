@@ -1,3 +1,5 @@
+"""Convert Vietnamese text to the telex input"""
+
 import sys
 import datetime
 import json

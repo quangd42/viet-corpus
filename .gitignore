@@ -5,7 +5,5 @@
 /**/.pytest_cache
 /data
 
-telex-converter/data
-corpus-json-combiner/data/
-corpus-json-combiner/test
-corpus-stats-extracter/data
+/**/genkey/layouts
+/**/genkey/corpora

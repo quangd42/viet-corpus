@@ -13,15 +13,20 @@
 # Delete files created by other modules
 
 import sys
-import click
 from pathlib import Path
 
+import click
+
+
 from .telex_converter import telexify as tc
+from .genkey_runner import genkey_runner as gr
 
 MAPPING_PATH = Path(
     "./src/converter/telex_converter/new_telex_mapping-w.json"
 ).resolve()
 DATA_PATH = Path("./data")
+
+GENKEY_FOLDER_PATH = Path("./src/converter/genkey_runner/genkey").resolve()
 
 
 @click.group()
@@ -54,28 +59,43 @@ def load(filename: str, limit: int, name: str):
         sys.exit("telex mapping contains invalid info")
 
     # Check output path
-    output_path = DATA_PATH / name
+    output_path = DATA_PATH / name / "tmp"
     while output_path.exists():
         is_confirmed = click.confirm(
             f"{name} is already used. Are you sure you want to overwrite?"
         )
         if not is_confirmed:
             name = click.prompt("Name")
-            output_path = DATA_PATH / name
+            output_path = DATA_PATH / name / "tmp"
         else:
             break
 
     Path.mkdir(output_path, parents=True, exist_ok=True)
 
+    click.echo(f"{'*' * 10}")
     output_count = tc.convert_and_save(filename, telex_mapping, limit, output_path)
 
-    print(f"{'-' * 5}")
+    click.echo(f"{'-' * 5}")
     if output_count == 0:
-        print("No file created. Something went wrong.")
+        click.echo("No file created. Something went wrong.")
     else:
-        print(
-            f"{output_count} files created successfully. Output written to {output_path}"
+        click.echo(
+            f"{output_count} files created successfully. Output written to {output_path}."
         )
+
+    # Run genkey
+    click.echo(f"{'*' * 10}")
+
+    if not gr.check_genkey_exist(GENKEY_FOLDER_PATH):
+        sys.exit("Cannot find genkey executable.")
+    gr_file_list = gr.get_input_file_list(output_path)
+    gr_output_path = gr.create_output_dir(output_path)
+    gr_output_files = gr.run_genkey(gr_file_list, gr_output_path, GENKEY_FOLDER_PATH)
+    click.echo(f"{'-' * 5}")
+    click.echo(
+        f"{len(gr_output_files) } files analyzed with genkey. Output written to {gr_output_path}."
+    )
+    click.echo(f"{'*' * 10}")
 
 
 @cli.command()
