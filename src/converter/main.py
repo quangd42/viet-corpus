@@ -12,14 +12,17 @@
 
 # Delete files created by other modules
 
+import shutil
 import sys
 from pathlib import Path
 
 import click
 
+from .util import create_section_separator, create_sub_section_separator
 
-from .telex_converter import telexify as tc
 from .genkey_runner import genkey_runner as gr
+from .json_combiner import combine as jc
+from .telex_converter import telexify as tc
 
 MAPPING_PATH = Path(
     "./src/converter/telex_converter/new_telex_mapping-w.json"
@@ -59,43 +62,65 @@ def load(filename: str, limit: int, name: str):
         sys.exit("telex mapping contains invalid info")
 
     # Check output path
-    output_path = DATA_PATH / name / "tmp"
+    output_path = DATA_PATH / name
     while output_path.exists():
         is_confirmed = click.confirm(
             f"{name} is already used. Are you sure you want to overwrite?"
         )
         if not is_confirmed:
             name = click.prompt("Name")
-            output_path = DATA_PATH / name / "tmp"
+            output_path = DATA_PATH / name
         else:
             break
 
-    Path.mkdir(output_path, parents=True, exist_ok=True)
+    # Put all tmp files in one folder for easy clean up
+    tmp_dir_path = output_path / "tmp"
+    Path.mkdir(tmp_dir_path, parents=True, exist_ok=True)
 
-    click.echo(f"{'*' * 10}")
-    output_count = tc.convert_and_save(filename, telex_mapping, limit, output_path)
+    create_section_separator()
+    click.echo("Converting texts into telex input...")
+    output_count = tc.convert_and_save(filename, telex_mapping, limit, tmp_dir_path)
 
-    click.echo(f"{'-' * 5}")
+    create_sub_section_separator()
     if output_count == 0:
         click.echo("No file created. Something went wrong.")
     else:
         click.echo(
-            f"{output_count} files created successfully. Output written to {output_path}."
+            f"{output_count} files created successfully. Output written to {tmp_dir_path}."
         )
 
     # Run genkey
-    click.echo(f"{'*' * 10}")
+    create_section_separator()
+    click.echo("Analyzing telex input files with genkey...")
 
     if not gr.check_genkey_exist(GENKEY_FOLDER_PATH):
         sys.exit("Cannot find genkey executable.")
-    gr_file_list = gr.get_input_file_list(output_path)
-    gr_output_path = gr.create_output_dir(output_path)
+    gr_file_list = gr.get_input_file_list(tmp_dir_path)
+    gr_output_path = gr.create_output_dir(tmp_dir_path)
     gr_output_files = gr.run_genkey(gr_file_list, gr_output_path, GENKEY_FOLDER_PATH)
-    click.echo(f"{'-' * 5}")
+    create_sub_section_separator()
     click.echo(
         f"{len(gr_output_files) } files analyzed with genkey. Output written to {gr_output_path}."
     )
-    click.echo(f"{'*' * 10}")
+    create_section_separator()
+
+    # Combine result
+    json_file_list = jc.get_json_file_list(gr_output_path)
+    if len(json_file_list) == 0:
+        sys.exit("No json file found. Something went wrong.")
+    combined_corpus_dict = jc.combine_all_json(json_file_list)
+    combined_filename = jc.save_output_json(combined_corpus_dict, gr_output_path)
+    final_json_path = output_path / f"{name}.json"
+
+    # Copy result to the main dir and rename
+    shutil.copyfile(combined_filename, final_json_path)
+
+    click.echo(f"Corpus json combined into {final_json_path}")
+    create_section_separator()
+
+    # Clean up tmp dir
+    shutil.rmtree(tmp_dir_path)
+    click.echo("Tmp data cleaned up. Enjoy!")
 
 
 @cli.command()
