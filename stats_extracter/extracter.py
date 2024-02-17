@@ -1,10 +1,11 @@
+"""Extract ngrams and sort in order of most frequent first """
+
 import json
 import sys
 from pathlib import Path
 
-
 EXPORT_KEY_LIST = ["letters", "bigrams", "trigrams", "skipgrams"]
-EXPORT_KEY_LIST = ["letters"]
+# EXPORT_KEY_LIST = ["letters"]
 
 
 def main():
@@ -14,10 +15,8 @@ def main():
 
     for key in EXPORT_KEY_LIST:
         dict = extract_stats(corpus_dict, key)
-        # print(dict)
-        output_dir = create_output_dir(input_file)
-        output_filename = create_output_filename(output_dir, key)
-        write_output(output_filename, dict)
+        output_filename = create_output_filename(Path(input_file), key)
+        save_output(output_filename, dict)
 
 
 def validate_usage():
@@ -32,7 +31,7 @@ def load_dict(input_file: str) -> dict:
             corpus_dict = json.load(f)
             return corpus_dict
     except FileNotFoundError:
-        sys.exit("Input file does not exist")
+        sys.exit("Input file does not exist.")
 
 
 def extract_stats(corpus_dict: dict, key: str) -> dict:
@@ -55,22 +54,16 @@ def extract_stats(corpus_dict: dict, key: str) -> dict:
     return sorted_letters
 
 
-def create_output_dir(input_file: str) -> Path:
-    input_path = Path(input_file)
-    file_name, _ = input_path.name.split(".")
-
-    output_dir = input_path.parent / file_name
-    Path(output_dir).mkdir(parents=True, exist_ok=True)
-    return output_dir
-
-
-def create_output_filename(output_dir: Path, key: str) -> Path:
-    output_filename = f"{key}.json"
-    output_path = output_dir / output_filename
-    return output_path
+def create_output_filename(input_file: Path, key: str) -> Path:
+    try:
+        filename, _ = input_file.name.split(".")
+    except Exception:
+        sys.exit("json file input is not valid.")
+    output_filename = input_file.resolve().parent / f"{filename}_{key}.json"
+    return output_filename
 
 
-def write_output(outfile: Path, stats_dict: dict) -> None:
+def save_output(outfile: Path, stats_dict: dict) -> None:
     with open(outfile, "w") as f:
         f.write(json.dumps(stats_dict))
 
