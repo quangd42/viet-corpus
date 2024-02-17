@@ -18,11 +18,13 @@ from pathlib import Path
 
 import click
 
+
 from .util import create_section_separator, create_sub_section_separator
 
 from .genkey_runner import genkey_runner as gr
 from .json_combiner import combine as jc
 from .telex_converter import telexify as tc
+from .stats_extracter import extracter as se
 
 MAPPING_PATH = Path(
     "./src/converter/telex_converter/new_telex_mapping-w.json"
@@ -115,7 +117,17 @@ def load(filename: str, limit: int, name: str):
     # Copy result to the main dir and rename
     shutil.copyfile(combined_filename, final_json_path)
 
-    click.echo(f"Corpus json combined into {final_json_path}")
+    click.echo(f"Corpus json combined into {final_json_path}.")
+    create_section_separator()
+
+    # Extract stats
+    corpus_dict = se.load_dict(final_json_path)
+    for key in se.EXPORT_KEY_LIST:
+        dict = se.extract_stats(corpus_dict, key)
+        se_output_filename = se.create_output_filename(final_json_path, key)
+        se.save_output(se_output_filename, dict)
+
+    click.echo(f"Corpus json data extracted. Results saved into {output_path}.")
     create_section_separator()
 
     # Clean up tmp dir
