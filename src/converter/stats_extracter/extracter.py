@@ -22,10 +22,10 @@ def main():
 def validate_usage():
     if len(sys.argv) != 2:
         sys.exit("Usage: python extract.py <input_file>")
-    return str(sys.argv[1])
+    return Path(sys.argv[1])
 
 
-def load_dict(input_file: str) -> dict:
+def load_dict(input_file: Path) -> dict:
     try:
         with open(input_file) as f:
             corpus_dict = json.load(f)
