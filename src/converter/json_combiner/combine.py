@@ -6,21 +6,25 @@ from pathlib import Path
 
 
 def main():
-    if len(sys.argv) != 3:
-        sys.exit("Usage: python combine.py <input_dir> <output_dir>")
+    if len(sys.argv) != 2:
+        sys.exit("Usage: python combine.py <input_dir>")
     else:
         # Get input_path and create json file list
         input_dir = Path(sys.argv[1])
-        file_list = list(input_dir.glob("*.json"))
+        file_list = get_json_file_list(input_dir)
 
-        output_dir = Path(sys.argv[2])
+        # output_dir = Path(sys.argv[2])
 
         combined_dict = combine_all_json(file_list)
 
-        save_output_json(combined_dict, output_dir)
+        save_output_json(combined_dict, input_dir)
 
 
-def save_output_json(combined_dict: dict, output_dir: Path) -> None:
+def get_json_file_list(input_dir_path: Path) -> list[Path]:
+    return list(input_dir_path.glob("*.json"))
+
+
+def save_output_json(combined_dict: dict, output_dir: Path) -> Path:
     # Write file to output
     file_name = "combined.json"
     output_path = output_dir / file_name
@@ -29,6 +33,8 @@ def save_output_json(combined_dict: dict, output_dir: Path) -> None:
 
     with open(output_path, "w") as f:
         f.write(json.dumps(combined_dict))
+
+    return output_path
 
 
 def combine_all_json(file_list: list) -> dict:
