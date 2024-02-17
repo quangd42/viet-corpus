@@ -12,6 +12,7 @@
 
 # Delete files created by other modules
 
+import json
 import shutil
 import sys
 from pathlib import Path
@@ -36,6 +37,9 @@ GENKEY_FOLDER_PATH = Path("./src/converter/genkey_runner/genkey").resolve()
 
 @click.group()
 def cli():
+    """Thin wrapper around genkey to analyze Vietnamese text.
+
+    To see help for each command use: converter COMMAND --help"""
     pass
 
 
@@ -45,7 +49,7 @@ def cli():
     "--limit",
     "-l",
     default=10000,
-    help="Limit the number of lines processed, in case you have a very big input file",
+    help="Limit the number of lines processed, in case you have a very big input file.",
 )
 @click.option(
     "--name",
@@ -136,5 +140,39 @@ def load(filename: str, limit: int, name: str):
 
 
 @cli.command()
-def view():
-    click.echo("You're viewing something")
+@click.argument("stat_name", type=str)
+@click.option(
+    "--name",
+    "-n",
+    prompt=True,
+    required=True,
+    type=str,
+    help="Name of corpus file to look up.",
+)
+@click.option("--limit", "-l", default=20, help="Number of top ngrams to view.")
+def view(stat_name: str, name: str, limit: int):
+    """View stats of a loaded Vietnamese corpus.
+
+    Valid stat names are 'letters', 'bigrams', 'trigrams', 'skipgrams'."""
+
+    if stat_name not in se.EXPORT_KEY_LIST:
+        sys.exit(f"Valid argument. Valid arguments are {se.EXPORT_KEY_LIST}.")
+
+    # Check name
+    input_path = DATA_PATH / name
+    if not input_path.exists():
+        sys.exit(f"Stats for {name} does not exist.")
+
+    input_file = input_path / f"{name}_{stat_name}.json"
+    try:
+        with open(input_file) as f:
+            dict = json.load(f)
+            count = 0
+            for key in dict:
+                count += 1
+                if count > limit:
+                    break
+                click.echo(f"'{key}': {dict[key]}")
+
+    except FileNotFoundError:
+        sys.exit("Stat file does not exit.")
