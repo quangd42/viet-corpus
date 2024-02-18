@@ -14,6 +14,7 @@ In the project folder start an virtual env and install the CLI.
 
 ```
 python3 -m venv .venv
+. .venv/bin/activate
 pip install .
 ```
 
@@ -34,7 +35,4 @@ converter COMMAND --help
 
 ### Notes
 
-All output will be stored in /data inside project folder. You can copy the output json corpora there to your genkey folder to for further usage.
-
-<!-- TODO: package the cli -->
-<!-- TODO: refactor using Click Exception? -->
+All output will be stored in `/data` inside project folder. You can copy the output json corpora there to your genkey folder to for further usage.

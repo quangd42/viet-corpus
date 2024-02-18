@@ -160,3 +160,6 @@ def view(stat_name: str, name: str, limit: int):
 
     except FileNotFoundError:
         sys.exit("Stat file does not exit.")
+
+
+# TODO: refactor using Click Exception?
