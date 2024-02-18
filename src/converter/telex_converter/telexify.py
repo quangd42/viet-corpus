@@ -1,14 +1,15 @@
 """Convert Vietnamese text to the telex input"""
 
-import sys
 import datetime
 import json
+import sys
 from pathlib import Path
-
 
 LINE_COUNT_PER_FILE = 3000
 OUTPUT_PATH = Path("./data/output/batch2").resolve()
-MAPPING_PATH = Path("./new_telex_mapping-w.json").resolve()
+# telex_mapping adds w after vowel cluster, i.e. tưởng -> tuowrng
+# telex_mapping-w uses as ư, i.e. tưởng -> twongr
+MAPPING_PATH = Path("./telex_mapping-w.json").resolve()
 
 
 def main():

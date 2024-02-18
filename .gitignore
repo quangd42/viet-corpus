@@ -1,9 +1,10 @@
 .DS_Store
 
 /**/.venv
+/**/.release
+build
 /**/__pycache__
 /**/.pytest_cache
 /data
 
-/**/genkey/layouts
-/**/genkey/corpora
+src/converter/genkey_runner/genkey

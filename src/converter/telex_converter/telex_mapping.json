@@ -1,0 +1,1102 @@
+{
+  "mapping": [
+    {
+      "name": "ă",
+      "main": "a",
+      "mod": "w",
+      "diacritics": ""
+    },
+    {
+      "name": "â",
+      "main": "a",
+      "mod": "a",
+      "diacritics": ""
+    },
+    {
+      "name": "ê",
+      "main": "e",
+      "mod": "e",
+      "diacritics": ""
+    },
+    {
+      "name": "ô",
+      "main": "o",
+      "mod": "o",
+      "diacritics": ""
+    },
+    {
+      "name": "ơ",
+      "main": "o",
+      "mod": "w",
+      "diacritics": ""
+    },
+    {
+      "name": "ư",
+      "main": "w",
+      "mod": "",
+      "diacritics": ""
+    },
+    {
+      "name": "đ",
+      "main": "d",
+      "mod": "d",
+      "diacritics": ""
+    },
+    {
+      "name": "á",
+      "main": "a",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "à",
+      "main": "a",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ả",
+      "main": "a",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ã",
+      "main": "a",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ạ",
+      "main": "a",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ắ",
+      "main": "a",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ằ",
+      "main": "a",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẳ",
+      "main": "a",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẵ",
+      "main": "a",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ặ",
+      "main": "a",
+      "mod": "w",
+      "diacritics": "j"
+    },
+    {
+      "name": "ấ",
+      "main": "a",
+      "mod": "a",
+      "diacritics": "s"
+    },
+    {
+      "name": "ầ",
+      "main": "a",
+      "mod": "a",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẩ",
+      "main": "a",
+      "mod": "a",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẫ",
+      "main": "a",
+      "mod": "a",
+      "diacritics": "x"
+    },
+    {
+      "name": "ậ",
+      "main": "a",
+      "mod": "a",
+      "diacritics": "j"
+    },
+    {
+      "name": "é",
+      "main": "e",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "è",
+      "main": "e",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẻ",
+      "main": "e",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẽ",
+      "main": "e",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ẹ",
+      "main": "e",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ế",
+      "main": "e",
+      "mod": "e",
+      "diacritics": "s"
+    },
+    {
+      "name": "ề",
+      "main": "e",
+      "mod": "e",
+      "diacritics": "f"
+    },
+    {
+      "name": "ể",
+      "main": "e",
+      "mod": "e",
+      "diacritics": "r"
+    },
+    {
+      "name": "ễ",
+      "main": "e",
+      "mod": "e",
+      "diacritics": "x"
+    },
+    {
+      "name": "ệ",
+      "main": "e",
+      "mod": "e",
+      "diacritics": "j"
+    },
+    {
+      "name": "í",
+      "main": "i",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ì",
+      "main": "i",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ỉ",
+      "main": "i",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ĩ",
+      "main": "i",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ị",
+      "main": "i",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ó",
+      "main": "o",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ò",
+      "main": "o",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ỏ",
+      "main": "o",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "õ",
+      "main": "o",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ọ",
+      "main": "o",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ố",
+      "main": "o",
+      "mod": "o",
+      "diacritics": "s"
+    },
+    {
+      "name": "ồ",
+      "main": "o",
+      "mod": "o",
+      "diacritics": "f"
+    },
+    {
+      "name": "ổ",
+      "main": "o",
+      "mod": "o",
+      "diacritics": "r"
+    },
+    {
+      "name": "ỗ",
+      "main": "o",
+      "mod": "o",
+      "diacritics": "x"
+    },
+    {
+      "name": "ộ",
+      "main": "o",
+      "mod": "o",
+      "diacritics": "j"
+    },
+    {
+      "name": "ớ",
+      "main": "o",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ờ",
+      "main": "o",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ở",
+      "main": "o",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ỡ",
+      "main": "o",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ợ",
+      "main": "o",
+      "mod": "w",
+      "diacritics": "j"
+    },
+    {
+      "name": "ú",
+      "main": "u",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ù",
+      "main": "u",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ủ",
+      "main": "u",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ũ",
+      "main": "u",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ụ",
+      "main": "u",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ứ",
+      "main": "w",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ừ",
+      "main": "w",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ử",
+      "main": "w",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ữ",
+      "main": "w",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ự",
+      "main": "w",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ý",
+      "main": "y",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ỳ",
+      "main": "y",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ỷ",
+      "main": "y",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ỹ",
+      "main": "y",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ỵ",
+      "main": "y",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "áu",
+      "main": "au",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "àu",
+      "main": "au",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ảu",
+      "main": "au",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ãu",
+      "main": "au",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ạu",
+      "main": "au",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ái",
+      "main": "ai",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ài",
+      "main": "ai",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ải",
+      "main": "ai",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ãi",
+      "main": "ai",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ại",
+      "main": "ai",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "áo",
+      "main": "ao",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ào",
+      "main": "ao",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ảo",
+      "main": "ao",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ão",
+      "main": "ao",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ạo",
+      "main": "ao",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "áy",
+      "main": "ay",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ày",
+      "main": "ay",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ảy",
+      "main": "ay",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ãy",
+      "main": "ay",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ạy",
+      "main": "ay",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ắu",
+      "main": "au",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ằu",
+      "main": "au",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẳu",
+      "main": "au",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẵu",
+      "main": "au",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ặu",
+      "main": "au",
+      "mod": "w",
+      "diacritics": "j"
+    },
+    {
+      "name": "ắy",
+      "main": "ay",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ằy",
+      "main": "ay",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẳy",
+      "main": "ay",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẵy",
+      "main": "ay",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ặy",
+      "main": "ay",
+      "mod": "w",
+      "diacritics": "j"
+    },
+    {
+      "name": "ấu",
+      "main": "au",
+      "mod": "a",
+      "diacritics": "s"
+    },
+    {
+      "name": "ầu",
+      "main": "au",
+      "mod": "a",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẩu",
+      "main": "au",
+      "mod": "a",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẫu",
+      "main": "au",
+      "mod": "a",
+      "diacritics": "x"
+    },
+    {
+      "name": "ậu",
+      "main": "au",
+      "mod": "a",
+      "diacritics": "j"
+    },
+    {
+      "name": "ấy",
+      "main": "ay",
+      "mod": "a",
+      "diacritics": "s"
+    },
+    {
+      "name": "ầy",
+      "main": "ay",
+      "mod": "a",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẩy",
+      "main": "ay",
+      "mod": "a",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẫy",
+      "main": "ay",
+      "mod": "a",
+      "diacritics": "x"
+    },
+    {
+      "name": "ậy",
+      "main": "ay",
+      "mod": "a",
+      "diacritics": "j"
+    },
+    {
+      "name": "éu",
+      "main": "eu",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "èu",
+      "main": "eu",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẻu",
+      "main": "eu",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẽu",
+      "main": "eu",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ẹu",
+      "main": "eu",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "éo",
+      "main": "eo",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "èo",
+      "main": "eo",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ẻo",
+      "main": "eo",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ẽo",
+      "main": "eo",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ẹo",
+      "main": "eo",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ếu",
+      "main": "eu",
+      "mod": "e",
+      "diacritics": "s"
+    },
+    {
+      "name": "ều",
+      "main": "eu",
+      "mod": "e",
+      "diacritics": "f"
+    },
+    {
+      "name": "ểu",
+      "main": "eu",
+      "mod": "e",
+      "diacritics": "r"
+    },
+    {
+      "name": "ễu",
+      "main": "eu",
+      "mod": "e",
+      "diacritics": "x"
+    },
+    {
+      "name": "ệu",
+      "main": "eu",
+      "mod": "e",
+      "diacritics": "j"
+    },
+    {
+      "name": "ía",
+      "main": "ia",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ìa",
+      "main": "ia",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ỉa",
+      "main": "ia",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ĩa",
+      "main": "ia",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ịa",
+      "main": "ia",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "íu",
+      "main": "iu",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ìu",
+      "main": "iu",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ỉu",
+      "main": "iu",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ĩu",
+      "main": "iu",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ịu",
+      "main": "iu",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "óa",
+      "main": "oa",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "òa",
+      "main": "oa",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ỏa",
+      "main": "oa",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "õa",
+      "main": "oa",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ọa",
+      "main": "oa",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ói",
+      "main": "oi",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "òi",
+      "main": "oi",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ỏi",
+      "main": "oi",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "õi",
+      "main": "oi",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ọi",
+      "main": "oi",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ối",
+      "main": "oi",
+      "mod": "o",
+      "diacritics": "s"
+    },
+    {
+      "name": "ồi",
+      "main": "oi",
+      "mod": "o",
+      "diacritics": "f"
+    },
+    {
+      "name": "ổi",
+      "main": "oi",
+      "mod": "o",
+      "diacritics": "r"
+    },
+    {
+      "name": "ỗi",
+      "main": "oi",
+      "mod": "o",
+      "diacritics": "x"
+    },
+    {
+      "name": "ội",
+      "main": "oi",
+      "mod": "o",
+      "diacritics": "j"
+    },
+    {
+      "name": "ới",
+      "main": "oi",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ời",
+      "main": "oi",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ởi",
+      "main": "oi",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ỡi",
+      "main": "oi",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ợi",
+      "main": "oi",
+      "mod": "w",
+      "diacritics": "j"
+    },
+    {
+      "name": "úa",
+      "main": "ua",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ùa",
+      "main": "ua",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ủa",
+      "main": "ua",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ũa",
+      "main": "ua",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ụa",
+      "main": "ua",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "úi",
+      "main": "ui",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ùi",
+      "main": "ui",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ủi",
+      "main": "ui",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ũi",
+      "main": "ui",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ụi",
+      "main": "ui",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "úy",
+      "main": "uy",
+      "mod": "",
+      "diacritics": "s"
+    },
+    {
+      "name": "ùy",
+      "main": "uy",
+      "mod": "",
+      "diacritics": "f"
+    },
+    {
+      "name": "ủy",
+      "main": "uy",
+      "mod": "",
+      "diacritics": "r"
+    },
+    {
+      "name": "ũy",
+      "main": "uy",
+      "mod": "",
+      "diacritics": "x"
+    },
+    {
+      "name": "ụy",
+      "main": "uy",
+      "mod": "",
+      "diacritics": "j"
+    },
+    {
+      "name": "ứa",
+      "main": "ua",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ừa",
+      "main": "ua",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ửa",
+      "main": "ua",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ữa",
+      "main": "ua",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ựa",
+      "main": "ua",
+      "mod": "w",
+      "diacritics": "j"
+    },
+    {
+      "name": "ứi",
+      "main": "ui",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ừi",
+      "main": "ui",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ửi",
+      "main": "ui",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ữi",
+      "main": "ui",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ựi",
+      "main": "ui",
+      "mod": "w",
+      "diacritics": "j"
+    },
+    {
+      "name": "ươ",
+      "main": "uo",
+      "mod": "w",
+      "diacritics": ""
+    },
+    {
+      "name": "ướ",
+      "main": "uo",
+      "mod": "w",
+      "diacritics": "s"
+    },
+    {
+      "name": "ườ",
+      "main": "uo",
+      "mod": "w",
+      "diacritics": "f"
+    },
+    {
+      "name": "ưở",
+      "main": "uo",
+      "mod": "w",
+      "diacritics": "r"
+    },
+    {
+      "name": "ưỡ",
+      "main": "uo",
+      "mod": "w",
+      "diacritics": "x"
+    },
+    {
+      "name": "ượ",
+      "main": "uo",
+      "mod": "w",
+      "diacritics": "j"
+    }
+  ]
+}

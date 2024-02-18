@@ -1,3 +1,4 @@
+README.md
 setup.py
 src/converter/__init__.py
 src/converter/main.py
@@ -13,6 +14,4 @@ src/converter/json_combiner/combine.py
 src/converter/json_combiner/test_combine.py
 src/converter/stats_extracter/extracter.py
 src/converter/stats_extracter/test_extracter.py
-src/converter/telex_converter/bk-main.py
-src/converter/telex_converter/telex_mapping.py
 src/converter/telex_converter/telexify.py

@@ -1,7 +1,7 @@
 """Combine all genkey corpus stats file into one."""
 
-import sys
 import json
+import sys
 from pathlib import Path
 
 
