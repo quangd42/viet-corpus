@@ -35,4 +35,4 @@ converter COMMAND --help
 
 ### Notes
 
-All output will be stored in `/data` inside project folder. You can copy the output json corpora there to your genkey folder to for further usage.
+All outputs will be stored in `/data` inside project folder. You can copy the outputted json corpora there to your genkey folder for further usage.
