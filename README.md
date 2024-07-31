@@ -2,7 +2,7 @@
 
 ### Introduction
 
-This CLI tool is a thin wrapper around [genkey](https://github.com/semilin/genkey). The goal is to create a corpora .json file from a corpus text file that contains Vietnamese, for keyboard layout analysis and generation using [genkey](https://github.com/semilin/genkey).
+This CLI tool is a wrapper around [genkey](https://github.com/semilin/genkey). The goal is to create a corpora .json file from a corpus text file that contains Vietnamese, for keyboard layout analysis and generation using [genkey](https://github.com/semilin/genkey).
 
 ### Installation
 

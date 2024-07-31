@@ -140,7 +140,7 @@ def view(stat_name: str, name: str, limit: int):
     Valid stat names are 'letters', 'bigrams', 'trigrams', 'skipgrams'."""
 
     if stat_name not in se.EXPORT_KEY_LIST:
-        sys.exit(f"Valid argument. Valid arguments are {se.EXPORT_KEY_LIST}.")
+        sys.exit(f"Invalid argument. Valid arguments are {se.EXPORT_KEY_LIST}.")
 
     # Check name
     input_path = DATA_PATH / name
