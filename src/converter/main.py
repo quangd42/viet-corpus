@@ -124,18 +124,16 @@ def load(filename: str, limit: int, name: str):
 
 
 @cli.command()
-@click.argument("stat_name", type=str)
-@click.option(
-    "--name",
-    "-n",
-    prompt=True,
-    required=True,
+@click.argument(
+    "name",
     type=str,
-    help="Name of corpus file to look up.",
+)
+@click.option(
+    "--stat_name", "-st", prompt=True, required=True, help="Stat name to view", type=str
 )
 @click.option("--limit", "-l", default=20, help="Number of top ngrams to view.")
-def view(stat_name: str, name: str, limit: int):
-    """View stats of a loaded Vietnamese corpus.
+def view(name: str, stat_name: str, limit: int):
+    """View stats of a loaded Vietnamese corpus `name`.
 
     Valid stat names are 'letters', 'bigrams', 'trigrams', 'skipgrams'."""
 
