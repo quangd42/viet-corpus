@@ -162,4 +162,14 @@ def view(stat_name: str, name: str, limit: int):
         sys.exit("Stat file does not exit.")
 
 
+@cli.command()
+def list():
+    """List names of loaded Vietnamese corpus."""
+
+    names = [d.name for d in DATA_PATH.iterdir() if d.is_dir()]
+
+    for name in names:
+        click.echo(name)
+
+
 # TODO: refactor using Click Exception?
