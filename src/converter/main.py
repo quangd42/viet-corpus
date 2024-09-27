@@ -1,6 +1,7 @@
 import json
 import shutil
 import sys
+from datetime import datetime
 from pathlib import Path
 
 import click
@@ -168,6 +169,35 @@ def list():
 
     for name in names:
         click.echo(name)
+
+
+@cli.command()
+@click.argument("pathname")
+@click.option(
+    "--name",
+    "-n",
+    type=str,
+    help="Combined json filename.",
+)
+def combine(pathname: str, name: str | None):
+    """Combine corpus json and output one with aggregated stats."""
+
+    input_path = Path(pathname)
+    if not input_path.exists() or not input_path.is_dir():
+        sys.exit("Provided path does not exist or is not a directory.")
+    json_file_list = jc.get_json_file_list(input_path)
+    if len(json_file_list) == 0:
+        sys.exit("No json file found. Something went wrong.")
+    combined_corpus_dict = jc.combine_all_json(json_file_list)
+    combined_filename = jc.save_output_json(combined_corpus_dict, input_path)
+    if name:
+        final_json_path = input_path / f"{name}.json"
+    else:
+        today = datetime.now().strftime("%Y%m%d_%H%M%S")
+        final_json_path = input_path / f"combined_{today}.json"
+    output_path = combined_filename.rename(final_json_path)
+
+    click.echo(f"Corpus json data combined. Results saved into {output_path}.")
 
 
 # TODO: refactor using Click Exception?
