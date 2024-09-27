@@ -49,11 +49,13 @@ def combine_all_json(file_list: list) -> dict:
             sys.exit("Input file does not exist")
 
         # Create combined_dict
-        if not combined_dict:
+        if combined_dict == {}:
             combined_dict = corpus_dict
 
-        else:
+        try:
             combined_dict = combine_two_json(combined_dict, corpus_dict)
+        except KeyError:
+            sys.exit(f"Invalid input file format: {input_file}")
 
     return combined_dict
 
@@ -71,11 +73,11 @@ def combine_two_json(corpus_dict1: dict, corpus_dict2: dict) -> dict:
         for sub_key in key_combined_content:
             try:
                 key_combined_content[sub_key] += key_2[sub_key]
+                del key_2[sub_key]
             except KeyError:
                 pass
         for sub_key in key_2:
-            if sub_key not in key_combined_content:
-                key_combined_content[sub_key] = key_2[sub_key]
+            key_combined_content[sub_key] = key_2[sub_key]
         combined_dict[key] = key_combined_content
 
     # toptrigrams
