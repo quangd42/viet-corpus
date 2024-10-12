@@ -1,11 +1,10 @@
-"""Extract ngrams and sort in order of most frequent first """
+"""Extract ngrams and sort in order of most frequent first"""
 
 import json
 import sys
 from pathlib import Path
 
-EXPORT_KEY_LIST = ["letters", "bigrams", "trigrams", "skipgrams"]
-# EXPORT_KEY_LIST = ["letters"]
+EXPORT_KEY_LIST = ['letters', 'bigrams', 'trigrams', 'skipgrams']
 
 
 def main():
@@ -19,9 +18,9 @@ def main():
         save_output(output_filename, dict)
 
 
-def validate_usage():
+def validate_usage() -> Path:
     if len(sys.argv) != 2:
-        sys.exit("Usage: python extract.py <input_file>")
+        sys.exit('Usage: python extract.py <input_file>')
     return Path(sys.argv[1])
 
 
@@ -31,15 +30,13 @@ def load_dict(input_file: Path) -> dict:
             corpus_dict = json.load(f)
             return corpus_dict
     except FileNotFoundError:
-        sys.exit("Input file does not exist.")
+        sys.exit('Input file does not exist.')
 
 
 def extract_stats(corpus_dict: dict, key: str) -> dict:
-    # Create list of letter dict
     stats_dict = corpus_dict[key]
 
     frequency_sum = sum(list(stats_dict.values()))
-    # key_with_percentage = {key: (stats_dict[key] / frequency_sum * 100) for key in stats_dict}
 
     key_with_percentage = {}
     for key in stats_dict.keys():
@@ -56,17 +53,17 @@ def extract_stats(corpus_dict: dict, key: str) -> dict:
 
 def create_output_filename(input_file: Path, key: str) -> Path:
     try:
-        filename, _ = input_file.name.split(".")
+        filename, _ = input_file.name.split('.')
     except Exception:
-        sys.exit("json file input is not valid.")
-    output_filename = input_file.resolve().parent / f"{filename}_{key}.json"
+        sys.exit('json file input is not valid.')
+    output_filename = input_file.resolve().parent / f'{filename}_{key}.json'
     return output_filename
 
 
 def save_output(outfile: Path, stats_dict: dict) -> None:
-    with open(outfile, "w") as f:
+    with open(outfile, 'w') as f:
         f.write(json.dumps(stats_dict))
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()

@@ -6,7 +6,7 @@ This CLI tool is a wrapper around [genkey](https://github.com/semilin/genkey). T
 
 ### Installation
 
-As this is a genkey wrapper, you will need to [download genkey](https://github.com/semilin/genkey/releases/tag/v1.2.0) to use it. Please note that this was built to work with the built release v1.2.0 specifically.
+As this is a genkey wrapper, you will need to [download genkey](https://github.com/semilin/genkey/releases/tag/v1.2.1) to use it. Please note that this was built to work with the built release v1.2.1 specifically.
 
 After downloading genkey, unzip it and copy the _innermost_ folder that contains genkey binary to `src/converter/genkey_runner` and rename it to `genkey`. For example, for mac release, copy the `mac` folder and rename it to `genkey`.
 
